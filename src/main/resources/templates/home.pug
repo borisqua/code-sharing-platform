@@ -1,0 +1,47 @@
+doctype html
+html(xmlns:th="http://www.thymeleaf.org")
+  head
+    title Code
+    //script(th:src = "@{/index.js}" src = "../static/public/js/index.js" type="text/javascript" )
+    link(rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous")
+    script(type="application/javascript").
+      function getCode(type) {
+        let id = document.getElementById("code_id").value;
+        let nextLocation = "/code/";
+        switch (type) {
+          case "html":
+            nextLocation = nextLocation + id
+            break;
+          case "json":
+            nextLocation = "/api" + nextLocation + id;
+            break;
+          case "allHtml":
+            nextLocation = nextLocation + "latest";
+            break;
+          case "allJson":
+            nextLocation = "/api" + nextLocation + "latest";
+        }
+        document.location.href = nextLocation;
+      }
+  body
+    div.ml-10.p-2.w-50
+      a(href="/h2/") Go H2 console
+    div.m-2.p-2
+      h3 You are on the code-sharing app main page
+      div.m-2.p-2
+        a(href="./code/new") Enter new piece of shared code
+      span.m-2.p-2 or
+      div.m-2.p-2 input snipped id to see already entered code:
+        input#code_id.m-2.pl-2.w-10(type="text")
+        div.m-2.p-2
+          button#htmlButton.btn.btn-primary(onclick="getCode('html')") view
+          span &nbsp;
+          button#jsonButton.btn.btn-primary(onclick="getCode('json')") get
+          span &nbsp;
+          button#allHtml.btn.btn-primary(onclick="getCode('allHtml')") view all
+          span &nbsp;
+          button#allJson.btn.btn-primary(onclick="getCode('allJson')") get all
+

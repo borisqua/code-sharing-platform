@@ -1,0 +1,17 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"><head><title>Create</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><script type="application/javascript">function send() {
+  let object = {
+    "code": document.getElementById("code_snippet").value,
+    "time": document.getElementById("time_restriction").value,
+    "views": document.getElementById("views_restriction").value
+  };
+  let json = JSON.stringify(object);
+  console.log(json);
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", '/api/code/new', false);
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.send(json);
+  console.log(xhr);
+  if (xhr.status == 200) {
+    alert("Success");
+  }
+}</script></head><body><div class="container"><div class="row"><div class="col-2 p-2"><a class="m-3" href="/">Go home</a></div></div><div class="row"><div class="col m-2 w-50">Write down the shared code:</div></div><div class="row"><div class="m-2 p-2"><textarea class="form-control" id="code_snippet" rows="6" cols="150">// write your code here</textarea></div></div><div class="row"><div class="col-3 float-left"><label class="m-2 float-right" for="time_restriction">Time restriction:</label></div><div class="col-2 float-left"><input class="m-2" id="time_restriction" type="text" value="0" th:value="0"></div></div><div class="row"><div class="col-3 float-left"><label class="m-2 float-right" for="views_restriction">Views restriction:</label></div><div class="col-2"><input class="m-2" id="views_restriction" type="text" value="0" th:value="0"></div></div><div class="row"><div class="m-2 p-2"><button class="btn btn-primary float-right" id="send_snippet" type="submit" onclick="send()">Submit</button></div></div></div></body></html>

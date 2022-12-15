@@ -1,0 +1,18 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"><head><title>Code</title><!--script(th:src = "@{/index.js}" src = "../static/public/js/index.js" type="text/javascript" )--><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><script type="application/javascript">function getCode(type) {
+  let id = document.getElementById("code_id").value;
+  let nextLocation = "/code/";
+  switch (type) {
+    case "html":
+      nextLocation = nextLocation + id
+      break;
+    case "json":
+      nextLocation = "/api" + nextLocation + id;
+      break;
+    case "allHtml":
+      nextLocation = nextLocation + "latest";
+      break;
+    case "allJson":
+      nextLocation = "/api" + nextLocation + "latest";
+  }
+  document.location.href = nextLocation;
+}</script></head><body><div class="ml-10 p-2 w-50"><a href="/h2/">Go H2 console</a></div><div class="m-2 p-2"><h3>You are on the code-sharing app main page</h3><div class="m-2 p-2"><a href="./code/new">Enter new piece of shared code</a></div><span class="m-2 p-2">or</span><div class="m-2 p-2">input snipped id to see already entered code:<input class="m-2 pl-2 w-10" id="code_id" type="text"><div class="m-2 p-2"><button class="btn btn-primary" id="htmlButton" onclick="getCode('html')">view</button><span>&nbsp;</span><button class="btn btn-primary" id="jsonButton" onclick="getCode('json')">get</button><span>&nbsp;</span><button class="btn btn-primary" id="allHtml" onclick="getCode('allHtml')">view all</button><span>&nbsp;</span><button class="btn btn-primary" id="allJson" onclick="getCode('allJson')">get all</button></div></div></div></body></html>
