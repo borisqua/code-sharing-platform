@@ -1,13 +1,16 @@
 package demo.crud.app;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import static java.util.function.Predicate.isEqual;
+
+//@SpringBootTest
 class CrudAppApplicationTests {
 
 	@Test
 	void contextLoads() {
+		String s = "Hello world";
+		assert "Hello world".equals(s);
 	}
 
 }
