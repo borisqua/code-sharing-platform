@@ -28,7 +28,7 @@ pipeline {
         stage("Run") {
             steps {
                 dir("code-sharing-platform"){
-                    sh "java -jar '/var/jenkins_home/workspace/Simple Sharing Platform Demo/code-sharing-platform/build/libs/code-sharing-platform-0.0.1-SNAPSHOT.jar'"
+                    sh "java -jar '/var/jenkins_home/workspace/GitHub Pipeline/code-sharing-platform/build/libs/code-sharing-platform-0.0.1-SNAPSHOT.jar'"
                 }
             }
         }
