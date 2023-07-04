@@ -6,11 +6,11 @@ pipeline {
 //                 deleteDir()
 //             }
 //         }
-        stage("Get from repository") {
-            steps {
-                sh "git clone https://github.com/borisqua/code-sharing-platform.git"
-            }
-        }
+//         stage("Get from repository") {
+//             steps {
+//                 sh "git clone https://github.com/borisqua/code-sharing-platform.git"
+//             }
+//         }
         stage("Compile") {
             steps {
                 dir("code-sharing-platform"){
