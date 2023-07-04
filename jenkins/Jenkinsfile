@@ -32,10 +32,5 @@ pipeline {
                 }
             }
         }
-        stage("Complete") {
-            steps {
-                echo 'Jom Complete'
-            }
-        }
     }
 }
