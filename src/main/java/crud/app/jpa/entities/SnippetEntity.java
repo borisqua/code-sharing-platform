@@ -19,7 +19,7 @@ import java.util.UUID;
 public class SnippetEntity {
     @Id
     @GeneratedValue(generator = "UUID", strategy = GenerationType.AUTO)
-    @Column(/*columnDefinition = "UUID PRIMARY KEY", */updatable = false, nullable = false)
+    @Column(columnDefinition = "UUID PRIMARY KEY", updatable = false, nullable = false)
     private UUID id;
     //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

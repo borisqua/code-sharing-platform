@@ -18,6 +18,7 @@ html(xmlns:th="http://www.thymeleaf.org")
     div.m-2.p-2(th:each="snippet: ${snippets}")
       div
         span#load_date.m-2.p-2.text-success(th:text="${#temporals.format(snippet.getDate(), 'yyyy-MM-dd HH:mm:ss')}") yyyy-MM-dd
+        span#uuid.m-2.p-2.text-success(th:text="UUID ${snippet.getId()})"
       div(th:if="${showViews}")
         span#views_restriction.m-2.p-2.text-info [( ${views} )] more views allowed
       div(th:if="${showTimelimit}")

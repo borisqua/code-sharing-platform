@@ -92,7 +92,8 @@ public class CodeSharingPlatformService {
     }
     
     public Page<SharedCode> getLastPage(int pageSize) {
-        return snippets.findAllByTimeLimitAndViewsLimit(0, 0, PageRequest.of(0, pageSize, Sort.by("date").descending()))
+        return snippets.findAllByTimeLimitAndViewsLimit(
+                        0, 0, PageRequest.of(0, pageSize, Sort.by("date").descending()))
             .map(SharedCode::new);
     }
     

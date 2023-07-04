@@ -40,7 +40,7 @@ public class CodeSharingPlatformControllerHtml {
     @GetMapping(path = "/code/{Id}", produces = "text/html")
     public String getCodeHtml(@PathVariable(name = "Id") UUID uuid, Model model) {
         
-        SharedCode sharedCode = service.getSharedCode(uuid, model);
+        SharedCode sharedCode = service.getSharedCode(uuid/*UUID.fromString(uuid)*/, model);
         if (sharedCode == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ERROR_MESSAGE_ILLEGAL_ID);
 //            throw new IllegalArgumentException(ERROR_MESSAGE_ILLEGAL_ID);

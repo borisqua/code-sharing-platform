@@ -36,8 +36,8 @@ public class CodeSharingPlatformControllerRest {
     // to customize this behaviour use @Transaction(rollbackFor = Exception.class)
     @GetMapping(path = "/api/code/{Id}", produces = "application/json")
     @ResponseBody
-    public SharedCode getCodeJson(@PathVariable(name = "Id") UUID uuid) {
-        SharedCode sharedCode = service.getSharedCode(uuid, null);
+    public SharedCode getCodeJson(@PathVariable(name = "Id") String uuid) {
+        SharedCode sharedCode = service.getSharedCode(UUID.fromString(uuid), null);
         if (sharedCode == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ERROR_MESSAGE_ILLEGAL_ID);
 //            throw new IllegalArgumentException(ERROR_MESSAGE_ILLEGAL_ID);

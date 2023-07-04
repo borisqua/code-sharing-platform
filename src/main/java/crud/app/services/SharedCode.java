@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import crud.app.jpa.entities.SnippetEntity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @SuppressWarnings("unused")
 public class SharedCode {
@@ -14,18 +15,24 @@ public class SharedCode {
 //    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date = LocalDateTime.now();
+    private UUID id;
     private int time;
     private int views;
     
     SharedCode() {}
     
     SharedCode(SnippetEntity snippet) {
+        this.id = snippet.getId();
         this.code = snippet.getCode();
         this.date = snippet.getDate();
         this.time = snippet.getTimeLimit();
         this.views = snippet.getViewsLimit();
     }
-    
+
+    public UUID getId() {
+        return id;
+    }
+
     public String getCode() {
         return code;
     }
