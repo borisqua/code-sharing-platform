@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    stages {
+        stage("Chean up") {
+            steps {
+                deleteDir()
+            }
+        }
+        stage("Get from repository") {
+            steps {
+                sh "git clone https://github.com/borisqua/code-sharing-platform.git"
+            }
+        }
+        stage("Compile") {
+            steps {
+                dir("code-sharing-platform"){
+                    sh "./gradlew clean build"
+                }
+            }
+        }
+        stage("Test") {
+            steps {
+                dir("code-sharing-platform"){
+                    sh "./gradlew test"
+                }
+            }
+        }
+        stage("Run") {
+            steps {
+                dir("code-sharing-platform"){
+                    sh "java -jar '/var/jenkins_home/workspace/Simple Sharing Platform Demo/code-sharing-platform/build/libs/code-sharing-platform-0.0.1-SNAPSHOT.jar'"
+                }
+            }
+        }
+    }
+}
