@@ -13,11 +13,6 @@ pipeline {
                 echo "Deployment ${params.depName}; auto start set to: ${params.autoStart}; Time zone: ${timeZone}"
             }
         }
-        stage("Clone") {
-            steps {
-                sh "git clone"
-            }
-        }
         stage("Compile") {
             steps {
                 sh "./gradlew clean build"
