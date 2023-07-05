@@ -1,27 +1,29 @@
 doctype html
 html(xmlns:th="http://www.thymeleaf.org")
-  head
-    title(th:text="${title}") Code
-    link(rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous")
-    link(rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css")
-    script(src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js")
-    script.
-      hljs.initHighlightingOnLoad();
-  body
-    div.ml-10.p-2.w-50
-      a(href="/") Go home
-
-    div.m-2.p-2(th:each="snippet: ${snippets}")
-      div
-        span#load_date.m-2.p-2.text-success(th:text="${#temporals.format(snippet.getDate(), 'yyyy-MM-dd HH:mm:ss')}") yyyy-MM-dd
-        span#uuid.m-2.p-2.text-success(th:text="UUID ${snippet.getId()})"
-      div(th:if="${showViews}")
-        span#views_restriction.m-2.p-2.text-info [( ${views} )] more views allowed
-      div(th:if="${showTimelimit}")
-        span#time_restriction.m-2.p-2.text-info The code will be available for [(${time})] seconds
-      pre#code_snippet
-        code.java.w-50.p-2.m-2(th:text="${snippet.getCode()}" style="background-color: #eee;") //Here could be your code
+    head
+        title(th:text="${title}") Code
+        link(rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous")
+        link(rel="stylesheet"
+            href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css")
+        script(src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js")
+        script.
+            hljs.initHighlightingOnLoad();
+    body
+        div.ml-10.p-2.w-50
+            a(href="/") Go home
+        div.m-2.p-2(th:each="snippet: ${snippets}")
+            div
+                span.m-2.p-2.text-success Created:
+                span#load_date.m-2.p-2.text-success(th:text="${#temporals.format(snippet.getDate(), 'yyyy-MM-dd HH:mm:ss')}") yyyy-MM-dd
+            div
+                small.m-2.p-2.text-success UUID:
+                small#uuid.m-2.p-2.text-success(th:text="${snippet.getId()}") UUID
+            div(th:if="${showViews}")
+                span#views_restriction.m-2.p-2.text-info [( ${views} )] more views allowed
+            div(th:if="${showTimelimit}")
+                span#time_restriction.m-2.p-2.text-info The code will be available for [(${time})] seconds
+            pre#code_snippet
+                code.java.w-50.p-2.m-2(th:text="${snippet.getCode()}" style="background-color: #eee;") //Here could be your code
