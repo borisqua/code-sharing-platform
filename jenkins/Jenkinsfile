@@ -10,7 +10,9 @@ pipeline {
     stages {
         stage("Description") {
             steps {
-                echo "Deployment ${params.depName}; auto start set to: ${params.autoStart}; Time zone: ${timeZone}"
+                echo "Deployment ${params.depName}"
+                echo "auto start set to: ${params.autoStart}"
+                echo "Time zone: ${timeZone}"
             }
         }
         stage("Compile") {
