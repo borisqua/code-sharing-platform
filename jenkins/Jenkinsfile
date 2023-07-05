@@ -1,16 +1,23 @@
 pipeline {
     agent any
+
+    parameters {
+        string(defaultValue: "Deployment name", description: "Give the name to the deployment:", name: "depName")
+        booleanParam(defaultValue: false, description: "Auto start after deployment finished?", name: "autoStart")
+        choice(choices: ["US-NewYork", "EU-London", "ASIA-Tokyo"], description: "Select the time zone to deploy:", name: "timeZone")
+    }
+
     stages {
-//         stage("Clean up") {
-//             steps {
-//                 deleteDir()
-//             }
-//         }
-//         stage("Get from repository") {
-//             steps {
-//                 sh "git clone https://github.com/borisqua/code-sharing-platform.git"
-//             }
-//         }
+        stage("Description") {
+            steps {
+                echo "Deployment ${params.depName}; auto start set to: ${params.autoStart}; Time zone: ${timeZone}"
+            }
+        }
+        stage("Clone") {
+            steps {
+                sh "git clone"
+            }
+        }
         stage("Compile") {
             steps {
                 sh "./gradlew clean build"
@@ -23,7 +30,6 @@ pipeline {
         }
         stage("Run") {
             steps {
-//                     sh "java -jar '/var/jenkins_home/workspace/GitHub Pipeline/code-sharing-platform/build/libs/code-sharing-platform-0.0.1-SNAPSHOT.jar'"
                 sh "./gradlew run"
             }
         }

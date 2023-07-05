@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(choices: ["TEST", "DEV", "QA", "PROD"], description: "Choose the environment?", name: "environment")
+    }
+
+    stages {
+        stage("Demo") {
+            steps {
+                echo "environment is set to: ${params.environment}"
+            }
+        }
+
+    }
+}
