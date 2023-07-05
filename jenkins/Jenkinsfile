@@ -13,24 +13,18 @@ pipeline {
 //         }
         stage("Compile") {
             steps {
-                dir("code-sharing-platform"){
-                    sh "gradlew clean build"
-                }
+                sh "gradlew clean build"
             }
         }
         stage("Test") {
             steps {
-                dir("code-sharing-platform"){
-                    sh "gradlew test"
-                }
+                sh "gradlew test"
             }
         }
         stage("Run") {
             steps {
-                dir("code-sharing-platform"){
 //                     sh "java -jar '/var/jenkins_home/workspace/GitHub Pipeline/code-sharing-platform/build/libs/code-sharing-platform-0.0.1-SNAPSHOT.jar'"
-                    sh "gradlew run"
-                }
+                sh "gradlew run"
             }
         }
     }
