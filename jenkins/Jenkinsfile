@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        boolean isOk = true;
+        String hello = "Hello folks!"
+        Long lNumber = 1000
+        Double dNumber = 0.123
+    }
+
     parameters {
         string(defaultValue: "Deployment name", description: "Give the name to the deployment:", name: "depName")
         booleanParam(defaultValue: false, description: "Auto start after deployment finished?", name: "autoStart")
@@ -13,6 +20,14 @@ pipeline {
                 echo "Deployment ${params.depName}"
                 echo "auto start set to: ${params.autoStart}"
                 echo "Time zone: ${timeZone}"
+            }
+        }
+        stage("Variables demo") {
+            steps {
+                echo "is it ok? ${isOK ? 'yes': 'no'}"
+                echo "${hello}"
+                echo "Long equals to ${lNumber}"
+                echo "Double equals to ${dNumber}"
             }
         }
         stage("Compile") {
